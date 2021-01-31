@@ -20,6 +20,25 @@ namespace Business.Concrete
         {
             return _carDal.GetAll();
         }
+        public void Add(Car car)
+        {
+            _carDal.Add(car);
+        }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+        public List<Car> GetById(int id)
+        {
+            return _carDal.GetById(id);
+        }
+
+        public void Update(Car car)
+        {
+
+            _carDal.Update(car);
+
+        }
     }
 }
