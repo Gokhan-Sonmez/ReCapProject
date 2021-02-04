@@ -37,6 +37,10 @@ namespace Business.Concrete
             {
                 _carDal.Add(car);
             }
+            else
+            {
+                Console.WriteLine("The car has not been added! The car name must be at least 2 characters and the daily price must be greater than 0!");
+            }
             
         }
 
