@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constans;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,12 +20,12 @@ namespace Business.Concrete
 
         public IDataResult<Color> Get(int colorId)
         {
-            return new SuccessDataResult<Color>(_colorDal.Get(c=>c.ColorId==colorId));
+            return new SuccessDataResult<Color>(_colorDal.Get(c=>c.ColorId==colorId), Messages.ColorIdListed);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
         }
     }
 }

@@ -10,28 +10,48 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarTest();
+         //CarTest();
 
             //ColorTest();
 
             //BrandTest();
-            CarManager carManager = new CarManager(new EfCarDal());
+
+            //CarAddTest(carManager);
+            // carManager.Delete(new Car { Id = 1002});
+            RentalAddTest();
+
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            var result = rentalManager.Add(new Rental
+            {
+                CarId = 1,
+                CustomerId = 2,
+                RentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
+            });
 
 
-            var result = carManager.Add(new Car { BrandId = 3, ColorId = 3, ModelYear = 2000, DailyPrice = 0, Description = "Hy" });
-
-            if (result.Success==true)
+            if (result.Success == true)
             {
                 Console.WriteLine(result.Messages);
             }
             else
             {
-              
-               Console.WriteLine(result.Messages);
+
+                Console.WriteLine(result.Messages);
 
             }
-            // carManager.Delete(new Car { Id = 1002});
+        }
 
+        private static void CarAddTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            var result = carManager.Add(new Car { CarName = "TESLA Model S", BrandId = 3, ColorId = 3, ModelYear = 2000, DailyPrice = 0, Description = "Otomatik" });
+
+            
         }
 
         private static void BrandTest()
@@ -62,6 +82,8 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.BrandName + " "+ car.CarName + " " + car.ColorName +" Price : " + car.DailyPrice);
             }
+
+           
         }
     }
 }
