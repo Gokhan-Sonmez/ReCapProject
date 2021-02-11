@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Business.Constans
 {
-    public class Messages
+    public static class Messages
     {
         public static string CarAdded = ("Car added");
         public static string CarNameInvalid = ("The car has not been added! The car name must be at least 2 characters");
