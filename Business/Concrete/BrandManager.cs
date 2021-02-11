@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,14 +17,14 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public Brand Get(int brandId)
+        public IDataResult<Brand> Get(int brandId)
         {
-           return _brandDal.Get(b=>b.BrandId==brandId);
+           return new SuccessDataResult<Brand>(_brandDal.Get(b=>b.BrandId==brandId));
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
     }
 }
