@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -18,6 +19,7 @@ namespace ConsoleUI
 
             //CarAddTest(carManager);
             // carManager.Delete(new Car { Id = 1002});
+
             RentalAddTest();
 
         }
@@ -28,12 +30,18 @@ namespace ConsoleUI
 
             var result = rentalManager.Add(new Rental
             {
-                CarId = 1,
-                CustomerId = 2,
-                RentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
-            });
+                CarId = 2,
+                CustomerId = 1,
+                RentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
+                
 
+            }) ;
 
+            Messages(result);
+        }
+
+        private static void Messages(IResult result)
+        {
             if (result.Success == true)
             {
                 Console.WriteLine(result.Messages);
@@ -49,9 +57,11 @@ namespace ConsoleUI
         private static void CarAddTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.Add(new Car { CarName = "TESLA Model S", BrandId = 3, ColorId = 3, ModelYear = 2000, DailyPrice = 0, Description = "Otomatik" });
-
             
+            var result = carManager.Add(new Car { CarName = "TESLA Model S", BrandId = 3, ColorId = 3, ModelYear = 2000, DailyPrice = 0, Description = "Otomatik" });
+           
+            Messages(result);
+
         }
 
         private static void BrandTest()
