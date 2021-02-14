@@ -21,12 +21,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.ColorIdListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarIdListed);
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id), Messages.ColorIdListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id), Messages.CarIdListed);
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
