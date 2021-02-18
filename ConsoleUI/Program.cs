@@ -30,8 +30,8 @@ namespace ConsoleUI
 
             var result = rentalManager.Add(new Rental
             {
-                CarId = 2,
-                CustomerId = 1,
+                CarId = 4,
+                CustomerId = 2,
                 RentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
                 
 
