@@ -47,5 +47,12 @@ namespace Business.Constans
         public static string RentalIdListed = ("Rental id Listed");
         public static string DontAvailable = ("Car already rented. Please chose an other car");
 
+
+        public static string ImageAdded = ("Image added");
+        public static string ImageUpdate = ("Image updated");
+        public static string ImageDelete = ("Image deleted");
+        public static string ImageListed = ("Image Listed");
+        public static string ImageIdListed = ("Image id Listed");
+        public static string ImageLimit = ("You can Upload just 5 Images");
     }
 }

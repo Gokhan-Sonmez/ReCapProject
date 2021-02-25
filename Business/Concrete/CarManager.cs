@@ -40,6 +40,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDelete);
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
 
