@@ -61,10 +61,10 @@ namespace WebAP.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getall")]
-        public IActionResult Getall()
+        [HttpGet("getclaims")]
+        public IActionResult GetClaims(User user)
         {
-            var result = _userService.GetAll();
+            var result = _userService.GetClaims(user);
 
             if (result.Success)
             {
@@ -75,9 +75,9 @@ namespace WebAP.Controllers
 
         [HttpGet("getid")]
 
-        public IActionResult Get(int id)
+        public IActionResult GetByMail(string email)
         {
-            var result = _userService.Get(id);
+            var result = _userService.GetByMail(email);
 
             if (result.Success)
             {

@@ -54,5 +54,6 @@ namespace Business.Constans
         public static string ImageListed = ("Image Listed");
         public static string ImageIdListed = ("Image id Listed");
         public static string ImageLimit = ("You can Upload just 5 Images");
+        internal static string EmailListed;
     }
 }
