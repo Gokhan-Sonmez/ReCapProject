@@ -4,10 +4,11 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.BusinessAspect.Autofac;
 
 namespace Business.Concrete
 {
@@ -19,7 +20,7 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
-
+        [SecuredOperation("user.add, admin")]
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {

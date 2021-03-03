@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constans
@@ -54,6 +56,13 @@ namespace Business.Constans
         public static string ImageListed = ("Image Listed");
         public static string ImageIdListed = ("Image id Listed");
         public static string ImageLimit = ("You can Upload just 5 Images");
-        internal static string EmailListed;
+        public static string EmailListed = ("Email Listed");
+        public static string UserNotFound = ("User not found");
+        public static string UserRegistered = ("User registered");
+        public static string AccessTokenCreated = ("Access Token Created");
+        public static string UserAlreadyExists = ("User Already Exists");
+        public static string SuccessfulLogin = ("Successful Login");
+        public static string PasswordError = ("Password Error");
+        public static string AuthorizationDenied = ("Authorization Denied");
     }
 }
