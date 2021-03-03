@@ -11,10 +11,10 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class AuthManager : IAuthService 
+    public class AuthManager : IAuthService
     {
-        IUserService _userService;
-        ITokenHelper _tokenHelper;
+        private IUserService _userService;
+        private ITokenHelper _tokenHelper;
 
         public AuthManager(IUserService userService, ITokenHelper tokenHelper)
         {
@@ -66,8 +66,8 @@ namespace Business.Concrete
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            var claims = _userService.GetClaims(user).Data;
-            var accessToken = _tokenHelper.CreateToken(user, claims);
+            var claims = _userService.GetClaims(user);
+            var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
     }
