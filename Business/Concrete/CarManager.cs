@@ -54,7 +54,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdate);
         }
 
-        [SecuredOperation("admin,car.list")]
+        // [SecuredOperation("admin,car.list")]
         [CacheAspect]
         
         public IDataResult<List<CarDetailDto>> GetCarDetails()
@@ -63,7 +63,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("admin,car.list")]
+        //  [SecuredOperation("admin,car.list")]
         [CacheAspect]
         [PerformanceAspect(15)]
         public IDataResult<List<Car>> GetAll()
@@ -71,14 +71,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
-        [SecuredOperation("admin,car.list")]
+        //  [SecuredOperation("admin,car.list")]
         [CacheAspect]
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id), Messages.CarListed);
         }
 
-        [SecuredOperation("admin,car.list")]
+      //  [SecuredOperation("admin,car.list")]
         [CacheAspect]
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
