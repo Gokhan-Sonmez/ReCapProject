@@ -19,6 +19,7 @@ namespace Business.Concrete
 
         ICarImageDal _carImageDal;
 
+
         public CarImageManager(ICarImageDal carImageDal)
         {
             _carImageDal = carImageDal;
@@ -32,7 +33,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            carImage.ImagePath = FileHelper.Add(file);
+            carImage.ImagePath = FileHelper.Add(file).Replace("\\", "/");
             carImage.UploadDate = DateTime.Now;
             _carImageDal.Add(carImage);
 
@@ -42,7 +43,7 @@ namespace Business.Concrete
         public IResult Delete(CarImage carImage)
         {
             
-            FileHelper.Delete(GetPath(carImage.ImageId));
+            FileHelper.Delete(GetPath(carImage.ImageId).Replace("/", "\\"));
             _carImageDal.Delete(carImage);
             
 
@@ -51,8 +52,12 @@ namespace Business.Concrete
 
         public IResult Update(IFormFile file, CarImage carImage)
         {
-           
-            carImage.ImagePath = FileHelper.Update(GetPath(carImage.ImageId), file);
+            IResult result = BusinessRules.Run(CheckImageLimitExceded(carImage.CarId));
+            if (result != null)
+            {
+                return result;
+            }
+            carImage.ImagePath = FileHelper.Update(GetPath(carImage.ImageId), file).Replace("\\", "/");
             carImage.UploadDate = DateTime.Now;
 
             _carImageDal.Update(carImage);
@@ -68,8 +73,13 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetCarImageByCarId(int CarId)
         {
+            IResult result = BusinessRules.Run(CheckCarImageExists(CarId));
 
-            return new SuccessDataResult<List<CarImage >>(CheckCarImageExists(CarId), Messages.ImageListed);
+            if (result != null)
+            {
+                return new ErrorDataResult<List<CarImage>>(result.Messages);
+            }
+            return new SuccessDataResult<List<CarImage >>(CheckCarImageExists(CarId).Data, Messages.ImageListed);
              
         }
 
@@ -92,16 +102,19 @@ namespace Business.Concrete
         }
 
 
-        private List<CarImage> CheckCarImageExists(int carId)
+        private IDataResult<List<CarImage>> CheckCarImageExists(int carId)
         {
             var result = _carImageDal.GetAll(c => c.CarId == carId).Any();
             string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/images/default.png");
             if (!result)
             {
-                return new List<CarImage> { new CarImage { ImagePath = path, CarId = carId} };
+
+                List<CarImage> carimage = new List<CarImage>();
+                carimage.Add(new CarImage { CarId = carId, ImagePath = path.Replace("\\", "/"), UploadDate = DateTime.Now });
+                return new SuccessDataResult<List<CarImage>>(carimage);
             }
 
-            return _carImageDal.GetAll(p => p.CarId == carId);
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(p => p.CarId == carId).ToList());
         }
 
         

@@ -10,8 +10,9 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using System;
 using System.Collections.Generic;
-
+using System.IO;
 
 namespace Business.Concrete
 {
@@ -59,6 +60,7 @@ namespace Business.Concrete
         
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
+            
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarListed);
         }
 

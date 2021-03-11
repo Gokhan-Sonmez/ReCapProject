@@ -52,7 +52,9 @@ namespace WebAP.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
+
+
+        [HttpDelete("delete")]
         public IActionResult Delete(CarImage carImage)
         {
 
