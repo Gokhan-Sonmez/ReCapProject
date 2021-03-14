@@ -37,11 +37,11 @@ namespace WebAP.Controllers
 
 
 
-        [HttpGet("getcarsbybrandid")]
+        [HttpGet("getcarsbybrand")]
 
-        public IActionResult GetCarsByBrandId(int id)
+        public IActionResult GetCarsByBrandId(int brandId)
         {
-            var result = _carService.GetCarsByBrandId(id);
+            var result = _carService.GetCarsByBrandId(brandId);
 
             if (result.Success)
             {
@@ -51,12 +51,12 @@ namespace WebAP.Controllers
 
         }
 
-        [HttpGet("getcarsbycolorid")]
+        [HttpGet("getcarsbycolor")]
 
-        public IActionResult GetCarsByColorId(int id)
+        public IActionResult GetCarsByColorId(int colorId)
         {
 
-            var result = _carService.GetCarsByColorId(id);
+            var result = _carService.GetCarsByColorId(colorId);
 
             if (result.Success)
             {
@@ -79,7 +79,18 @@ namespace WebAP.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getcardetailbyId")]
 
+        public IActionResult GetCarDetails(int carId)
+        {
+            var result = _carService.GetCarDetailById(carId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpPost("add")]
 
