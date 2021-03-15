@@ -105,7 +105,7 @@ namespace Business.Concrete
         private IDataResult<List<CarImage>> CheckCarImageExists(int carId)
         {
             var result = _carImageDal.GetAll(c => c.CarId == carId).Any();
-            string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/images/default.png");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $"/images/default.png");
             if (!result)
             {
 
