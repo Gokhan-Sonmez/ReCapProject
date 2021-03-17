@@ -13,8 +13,8 @@ namespace Core.Utilities.Helpers
 
         public static string Add(IFormFile file)
         {
-            var newPath = GuilPath(file);
-            var result = NewPath(newPath);
+            var path = GuidPath(file);
+            var result = FilePath(path);
             if (file.Length > 0)
             {
                 using (var stream = new FileStream(result, FileMode.Create))
@@ -23,7 +23,7 @@ namespace Core.Utilities.Helpers
                 }
             }
 
-            var sqlpath = SqlPath(newPath);
+            var sqlpath = SqlPath(path);
             return sqlpath;
         }
         public static void Delete(string path)
@@ -32,11 +32,11 @@ namespace Core.Utilities.Helpers
             File.Delete(deletePath);
         }
 
-        public static string Update(string path, IFormFile file)
+        public static string Update(string oldPath, IFormFile file)
         {
-            var newPath = GuilPath(file);
-            var result = NewPath(newPath);
-            string deletePath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{path}");
+            var path = GuidPath(file);
+            var result = FilePath(path);
+            string deletePath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{oldPath}");
             if (deletePath.Length > 0)
             {
                 using (var stream = new FileStream(result, FileMode.Create))
@@ -48,21 +48,11 @@ namespace Core.Utilities.Helpers
             
             File.Delete(deletePath);
 
-            var sqlpath = SqlPath(newPath);
+            var sqlpath = SqlPath(path);
             return sqlpath;
         }
 
-
-        public static string NewPath(string imageName)
-        {
-
-            string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/images/{imageName}");
-
-            return path;
-
-        }
-
-        public static string GuilPath(IFormFile file)
+        public static string GuidPath(IFormFile file)
         {
 
             string imageExtension = Path.GetExtension(file.FileName);
@@ -73,6 +63,15 @@ namespace Core.Utilities.Helpers
 
         }
 
+        public static string FilePath(string imageName)
+        {
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/images/{imageName}");
+
+            return path;
+
+        }
+
         public static string SqlPath(string imageName)
         {
 
@@ -80,6 +79,7 @@ namespace Core.Utilities.Helpers
 
             return path;
         }
+
 
     }
 }

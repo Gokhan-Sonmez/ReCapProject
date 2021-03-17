@@ -18,13 +18,13 @@ namespace DataAccess.Concrete.EntityFramework
             
                 using (RentCarContext context = new RentCarContext())
                 {
-                    var result = from ca in context.Cars
+                    var result = from ca in  context.Cars
                                  join co in context.Colors
                                  on ca.ColorId equals co.ColorId
                                  join b in context.Brands
                                  on ca.BrandId equals b.BrandId
-                                 join im in context.CarImages
-                                 on ca.CarId equals im.CarId
+                                 //join im in context.CarImages
+                                 //on ca.CarId equals im.CarId
                                  select new CarDetailDto
                                  {
                                      CarId = ca.CarId,
@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
                                      BrandId = b.BrandId,
                                      BrandName = b.BrandName,
                                      DailyPrice = ca.DailyPrice,
-                                     ImagePath = im.ImagePath
+                                     ImagePath = (from a in context.CarImages where a.CarId == ca.CarId select a.ImagePath).FirstOrDefault()
                                  };
 
                 return filter == null
