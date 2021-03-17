@@ -75,9 +75,9 @@ namespace WebAP.Controllers
 
         [HttpGet("getid")]
 
-        public IActionResult Get(int id)
+        public IActionResult Get(int brandId)
         {
-            var result = _brandService.Get(id);
+            var result = _brandService.Get(brandId);
 
             if (result.Success)
             {

@@ -25,10 +25,10 @@ namespace WebAP.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(IFormFile file, [FromForm] CarImage carImage)
+        public IActionResult Add(IFormFile image, [FromForm] CarImage carImage)
         {
 
-            var result = _carImageService.Add(file, carImage);
+            var result = _carImageService.Add(image, carImage);
 
             if (result.Success)
             {
@@ -40,10 +40,10 @@ namespace WebAP.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(IFormFile file, [FromForm(Name = ("Id"))] int Id)
+        public IActionResult Update(IFormFile image, [FromForm(Name = ("imageId"))] int imageId)
         {
-            var carImage = _carImageService.Get(Id).Data;
-            var result = _carImageService.Update(file, carImage);
+            var carImage = _carImageService.Get(imageId).Data;
+            var result = _carImageService.Update(image, carImage);
 
             if (result.Success)
             {
@@ -69,9 +69,9 @@ namespace WebAP.Controllers
 
         [HttpGet("getbycarid")]
 
-        public IActionResult GetCarImageByCarId(int id)
+        public IActionResult GetCarImageByCarId(int carId)
         {
-            var result = _carImageService.GetCarImageByCarId(id);
+            var result = _carImageService.GetCarImageByCarId(carId);
             
             if (result.Success)
             {

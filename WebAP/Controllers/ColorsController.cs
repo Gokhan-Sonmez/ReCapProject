@@ -74,9 +74,9 @@ namespace WebAP.Controllers
 
         [HttpGet("getid")]
 
-        public IActionResult Get(int id)
+        public IActionResult Get(int colorId)
         {
-            var result = _colorService.Get(id);
+            var result = _colorService.Get(colorId);
 
             if (result.Success)
             {

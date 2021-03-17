@@ -75,9 +75,9 @@ namespace WebAP.Controllers
 
         [HttpGet("getid")]
 
-        public IActionResult Get(int id)
+        public IActionResult Get(int rentalId)
         {
-            var result = _rentalService.Get(id);
+            var result = _rentalService.Get(rentalId);
 
             if (result.Success)
             {
