@@ -74,6 +74,14 @@ namespace Business.Concrete
                     {
                         return new ErrorResult(Messages.DontAvailable);
                     }
+                    else if (rent.RentDate<rent.ReturnDate)
+                    {
+                        return new ErrorResult(Messages.DontAvailable);
+                    }
+                    else if (rent.CarId==carId)
+                    {
+                        return new ErrorResult(Messages.DontAvailable);
+                    }
                 }
             }
             return new SuccessResult();

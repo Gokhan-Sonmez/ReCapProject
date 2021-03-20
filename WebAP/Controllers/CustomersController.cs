@@ -72,6 +72,17 @@ namespace WebAP.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getcustomersdetail")]
+        public IActionResult GetCustomersDetail()
+        {
+            var result = _customerService.GetCustomersDetail();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpGet("getid")]
 
