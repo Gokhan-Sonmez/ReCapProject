@@ -13,33 +13,26 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, RentCarContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             
                 using (RentCarContext context = new RentCarContext())
                 {
-                    var result = from ca in  context.Cars
-                                 join co in context.Colors
-                                 on ca.ColorId equals co.ColorId
-                                 join b in context.Brands
-                                 on ca.BrandId equals b.BrandId
-                                 //join im in context.CarImages
-                                 //on ca.CarId equals im.CarId
+                    var result = from c in filter is null ? context.Cars : context.Cars.Where(filter)
+                                 join b in context.Brands on c.BrandId equals b.BrandId
+                                 join co in context.Colors on c.ColorId equals co.ColorId
                                  select new CarDetailDto
                                  {
-                                     CarId = ca.CarId,
-                                     CarName = ca.CarName,
-                                     ColorId = co.ColorId,
-                                     ColorName = co.ColorName,
-                                     BrandId = b.BrandId,
+                                     CarId = c.CarId,
+                                     CarName = c.CarName,
                                      BrandName = b.BrandName,
-                                     DailyPrice = ca.DailyPrice,
-                                     ImagePath = (from a in context.CarImages where a.CarId == ca.CarId select a.ImagePath).FirstOrDefault()
+                                     ColorName = co.ColorName,
+                                     DailyPrice = c.DailyPrice,
+                                     ImagePath = context.CarImages.Where(x => x.CarId == c.CarId).FirstOrDefault().ImagePath,
+                                     Status = !(context.Rentals.Any(r => r.CarId == c.CarId && r.ReturnDate == null))
                                  };
 
-                return filter == null
-                ? result.ToList()
-                : result.Where(filter).ToList();
+                return result.ToList();
 
             }
 

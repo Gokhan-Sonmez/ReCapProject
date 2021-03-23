@@ -63,6 +63,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalListed);
         }
 
+        public IDataResult<List<RentalDetailDto>> GetRentalByCarId(int carId)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(c => c.CarId == carId));
+        }
+
+
         private IResult RentCarReturnDateCheck(int carId)
         {
             var result = _rentalDal.GetAll(r => r.CarId == carId);

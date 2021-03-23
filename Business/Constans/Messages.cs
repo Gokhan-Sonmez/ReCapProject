@@ -48,7 +48,7 @@ namespace Business.Constans
         public static string RentalListed = ("Rental Listed");
         public static string RentalIdListed = ("Rental id Listed");
         public static string DontAvailable = ("Car already rented. Please chose an other car");
-
+        public static string SuccessfullyPaid = ("Success fully Paid");
 
         public static string ImageAdded = ("Image added");
         public static string ImageUpdate = ("Image updated");
@@ -56,6 +56,7 @@ namespace Business.Constans
         public static string ImageListed = ("Image Listed");
         public static string ImageIdListed = ("Image id Listed");
         public static string ImageLimit = ("You can Upload just 5 Images");
+
         public static string EmailListed = ("Email Listed");
         public static string UserNotFound = ("User not found");
         public static string UserRegistered = ("User registered");
@@ -64,5 +65,6 @@ namespace Business.Constans
         public static string SuccessfulLogin = ("Successful Login");
         public static string PasswordError = ("Password Error");
         public static string AuthorizationDenied = ("Authorization Denied");
+        
     }
 }
