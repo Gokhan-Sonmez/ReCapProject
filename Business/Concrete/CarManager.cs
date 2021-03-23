@@ -94,22 +94,22 @@ namespace Business.Concrete
             _carDal.Add(car);
             return new SuccessResult(Messages.CarUpdate);
         }
-
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetailById(int id)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == id), Messages.CarListed);
         }
-
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetailsByBrandId(int brandId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(cardetail => cardetail.BrandId == brandId));
         }
-
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetailsByColorId(int colorId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(cardetail => cardetail.ColorId == colorId));
         }
-
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarsBySelect(int brandId, int colorId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId & c.BrandId == brandId));

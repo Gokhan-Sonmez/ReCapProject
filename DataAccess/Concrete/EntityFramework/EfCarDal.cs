@@ -28,6 +28,8 @@ namespace DataAccess.Concrete.EntityFramework
                                      BrandName = b.BrandName,
                                      ColorName = co.ColorName,
                                      DailyPrice = c.DailyPrice,
+                                     ModelYear = c.ModelYear,
+                                     Description= c.Description,
                                      ImagePath = context.CarImages.Where(x => x.CarId == c.CarId).FirstOrDefault().ImagePath,
                                      Status = !(context.Rentals.Any(r => r.CarId == c.CarId && r.ReturnDate == null))
                                  };
