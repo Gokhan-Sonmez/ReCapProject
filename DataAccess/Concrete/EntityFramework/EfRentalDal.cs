@@ -33,7 +33,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  LastName = u.LastName,
                                  CompanyName = cu.CompanyName,
                                  RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate
+                                 ReturnDate = r.ReturnDate,
+                                 Status = r.Status
                              };
                 return result.ToList();
 
