@@ -60,7 +60,7 @@ namespace Business.Constans
         public static string EmailListed = ("Email Listed");
         public static string UserNotFound = ("User not found");
         public static string UserRegistered = ("User registered");
-        public static string AccessTokenCreated = ("Access Token Created");
+        public static string AccessTokenCreated = ("User Logined");
         public static string UserAlreadyExists = ("User Already Exists");
         public static string SuccessfulLogin = ("Successful Login");
         public static string PasswordError = ("Password Error");
