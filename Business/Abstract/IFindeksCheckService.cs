@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Business.Abstract
    public interface IFindeksCheckService
     {
 
-        bool CheckIfFindeksEnough(int customerId,int carId);
+        IResult CheckIfFindeksEnough(int customerId,int carId);
     }
 }

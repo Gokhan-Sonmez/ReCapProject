@@ -8,7 +8,6 @@ namespace Business.Abstract
 {
     public interface ICardService
     {
-
         IResult Add(Card card);
         IResult Delete(Card card);
         IResult Update(Card card);

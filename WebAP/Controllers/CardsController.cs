@@ -15,6 +15,11 @@ namespace WebAP.Controllers
     {
         ICardService _cardService;
 
+        public CardsController(ICardService cardService)
+        {
+            _cardService = cardService;
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Card card)
         {

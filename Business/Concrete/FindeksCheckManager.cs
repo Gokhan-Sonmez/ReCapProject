@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace Business.Concrete
             _carService = carService;
         }
 
-        public bool CheckIfFindeksEnough(int customerId,int carId)
+        public IResult CheckIfFindeksEnough(int customerId,int carId)
         {
             var carFindex = 0;
 
@@ -38,12 +40,12 @@ namespace Business.Concrete
             if (carFindex<= customerFindex)
             {
 
-                return true;
+                return new SuccessResult(Messages.FindeksEnough);
 
             }
             else
             {
-                return false;
+                return new ErrorResult(Messages.FindeksNotEnough);
             }
             
         }

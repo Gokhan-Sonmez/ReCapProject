@@ -108,7 +108,7 @@ namespace Business.Concrete
         private IResult CheckIfFindeksEnough(int customerId,int carId)
         {
             var result = _findeksCheckService.CheckIfFindeksEnough(customerId, carId);
-            if (!result)
+            if (!result.Success)
             {
                 return new ErrorResult(Messages.FindeksNotEnough);
             }
