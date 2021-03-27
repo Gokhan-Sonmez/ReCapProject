@@ -84,7 +84,7 @@ namespace WebAP.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("getbycustomerid")]
+        [HttpGet("getbycardid")]
         public IActionResult GetByCardId(int cardId)
         {
             var result = _customerCardService.GetByCustomerId(cardId);
