@@ -17,16 +17,19 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
+        IFindeksCheckService _findeksCheckService;
 
-        public RentalManager(IRentalDal rentalDal)
+        public RentalManager(IRentalDal rentalDal, IFindeksCheckService findeksCheckService)
         {
             _rentalDal = rentalDal;
+            _findeksCheckService = findeksCheckService;
         }
 
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            IResult result = BusinessRules.Run(RentCarReturnDateCheck(rental.CarId),RentCarStatusCheck(rental.CarId));
+            IResult result = BusinessRules.Run(RentCarReturnDateCheck(rental.CarId),RentCarStatusCheck(rental.CarId), 
+                CheckIfFindeksEnough(rental.CustomerId,rental.CarId));
             if (result != null)
             {
                 return result;
@@ -100,6 +103,17 @@ namespace Business.Concrete
                 }
             }
             return new SuccessResult();
+        }
+
+        private IResult CheckIfFindeksEnough(int customerId,int carId)
+        {
+            var result = _findeksCheckService.CheckIfFindeksEnough(customerId, carId);
+            if (!result)
+            {
+                return new ErrorResult(Messages.FindeksNotEnough);
+            }
+
+            return new SuccessResult(Messages.FindeksEnough);
         }
 
     }

@@ -11,5 +11,7 @@ namespace Entities.DTOs
         public string CompanyName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public int Findeks { get; set; }
     }
 }

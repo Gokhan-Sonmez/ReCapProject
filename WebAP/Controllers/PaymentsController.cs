@@ -30,6 +30,28 @@ namespace WebAP.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getbyrentalId")]
+        public IActionResult GetByRentalId(int rentalId)
+        {
+            var result = _paymentService.GetByRentalId(rentalId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getall")]
+        public IActionResult Getall()
+        {
+            var result = _paymentService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
 

@@ -65,6 +65,14 @@ namespace Business.Constans
         public static string SuccessfulLogin = ("Successful Login");
         public static string PasswordError = ("Password Error");
         public static string AuthorizationDenied = ("Authorization Denied");
-        
+
+        public static string PaymentIdListed = ("Payment Id Listed");
+        public static string PaymentListed = ("Payments Listed");
+        public static string FindeksNotEnough = ("Findeks Not Enough");
+        public static string FindeksEnough = ("Findeks Enough");
+        internal static string CardAdded;
+        internal static string CardDeleted;
+        internal static string CardUpdated;
+        internal static string CardListed;
     }
 }

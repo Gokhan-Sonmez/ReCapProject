@@ -31,7 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                                      ModelYear = c.ModelYear,
                                      Description= c.Description,
                                      ImagePath = context.CarImages.Where(x => x.CarId == c.CarId).FirstOrDefault().ImagePath,
-                                     Status = !(context.Rentals.Any(r => r.CarId == c.CarId && r.Status==false))
+                                     Status = !(context.Rentals.Any(r => r.CarId == c.CarId && r.Status==false)),
+                                     FindexScore = c.FindeksScore
                                  };
 
                 return result.ToList();

@@ -23,5 +23,23 @@ namespace Business.Concrete
             _paymentDal.Add(payment);
             return new SuccessResult(Messages.SuccessfullyPaid);
         }
+
+   
+        public IDataResult<Payment> Get(int paymentid)
+        {
+            return new SuccessDataResult<Payment>(_paymentDal.Get(p => p.PaymentId == paymentid), Messages.PaymentIdListed);
+        }
+
+        public IDataResult<List<Payment>> GetAll()
+        {
+            return new SuccessDataResult<List<Payment>>(_paymentDal.GetAll(), Messages.PaymentListed);
+        }
+
+        public IDataResult<List<Payment>> GetByRentalId(int rentalId)
+        {
+            return new SuccessDataResult<List<Payment>>(_paymentDal.GetAll(p=>p.RentalId==rentalId), Messages.PaymentListed);
+        }
+
+      
     }
 }
