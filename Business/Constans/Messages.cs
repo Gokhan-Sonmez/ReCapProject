@@ -70,9 +70,9 @@ namespace Business.Constans
         public static string PaymentListed = ("Payments Listed");
         public static string FindeksNotEnough = ("Findeks Not Enough");
         public static string FindeksEnough = ("Findeks Enough");
-        internal static string CardAdded;
-        internal static string CardDeleted;
-        internal static string CardUpdated;
-        internal static string CardListed;
+        public static string CardAdded= ("Card Added");
+        public static string CardDeleted = ("Card Deleted");
+        public static string CardUpdated = ("Card Updated");
+        public static string CardListed = ("Card Listed");
     }
 }
