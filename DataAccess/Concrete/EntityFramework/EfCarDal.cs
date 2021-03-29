@@ -32,7 +32,7 @@ namespace DataAccess.Concrete.EntityFramework
                                      Description= c.Description,
                                      ImagePath = context.CarImages.Where(x => x.CarId == c.CarId).FirstOrDefault().ImagePath,
                                      Status = !(context.Rentals.Any(r => r.CarId == c.CarId && r.Status==false)),
-                                     FindexScore = c.FindeksScore
+                                     FindeksScore = c.FindeksScore
                                  };
 
                 return result.ToList();

@@ -13,6 +13,7 @@ namespace Business.Abstract
         IResult Update(Card card);
         IDataResult<Card> Get(int cardid);
         IDataResult<List<Card>> GetAll();
-    
+        IDataResult<List<Card>> GetCardByCustomerId(int customerId);
+
     }
 }

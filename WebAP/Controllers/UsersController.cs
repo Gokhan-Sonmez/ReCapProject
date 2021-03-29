@@ -73,11 +73,25 @@ namespace WebAP.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getid")]
+        [HttpGet("getbymail")]
 
         public IActionResult GetByMail(string email)
         {
             var result = _userService.GetByMail(email);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+
+        [HttpGet("get")]
+
+        public IActionResult Get(int userId)
+        {
+            var result = _userService.Get(userId);
 
             if (result.Success)
             {

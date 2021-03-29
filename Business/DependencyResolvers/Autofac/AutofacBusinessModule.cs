@@ -47,9 +47,6 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<PaymentManager>().As<IPaymentService>().SingleInstance();
             builder.RegisterType<EfPaymentDal>().As<IPaymentDal>().SingleInstance();
 
-            builder.RegisterType<CustomerCardManager>().As<ICustomerCardService>().SingleInstance();
-            builder.RegisterType<EfCustomerCardDal>().As<ICustomerCardDal>().SingleInstance();
-
 
             builder.RegisterType<CardManager>().As<ICardService>().SingleInstance();
             builder.RegisterType<EfCardDal>().As<ICardDal>().SingleInstance();

@@ -50,6 +50,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user), Messages.UserListed);
         }
 
-        
+        public IDataResult<User> Get(int userId)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), Messages.UserListed);
+        }
     }
 }

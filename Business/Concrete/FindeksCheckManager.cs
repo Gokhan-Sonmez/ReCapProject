@@ -29,7 +29,7 @@ namespace Business.Concrete
 
             foreach (var findex in cars)
             {
-               carFindex = carFindex + findex.FindexScore;
+               carFindex = carFindex + findex.FindeksScore;
             }
 
             foreach (var findex in customers)
