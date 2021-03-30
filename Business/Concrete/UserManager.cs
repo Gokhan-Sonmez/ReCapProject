@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.BusinessAspect.Autofac;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -53,6 +54,11 @@ namespace Business.Concrete
         public IDataResult<User> Get(int userId)
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), Messages.UserListed);
+        }
+
+        public IDataResult<List<UserForUpdateDto>> GetUserDetailById(int userId)
+        {
+            return new SuccessDataResult<List<UserForUpdateDto>>(_userDal.GetUserDetails(u => u.UserId == userId), Messages.UserListed);
         }
     }
 }
